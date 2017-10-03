@@ -1,0 +1,52 @@
+wk4_presentation
+========================================================
+author: x46182
+date: October 1, 2017
+autosize: true
+
+mtcars Shiny Application
+========================================================
+
+- The Shiny Application hosted is hosted at https://x46182.shinyapps.io/ddp_wk4_assign/
+- This application allows the user to graph two numeric variables against each other in a scatter plot
+- The factor variables are used as a coloring aesthetic.  The factor variables in this particular Shiny Application are:
+
+                - cyl (# of Cylinders)
+                - vs (V/S)
+                - am (Automatic/ Manual Transmission)
+                - gear (# of forward gears that the vehicle has)
+                - carb (# of carburetors that the vehicle has)
+                
+- For more information on the **mtcars** dataset, google **mtcars [R]**
+
+mtcars head()
+===
+
+The first six rows of the data used in the application are as follows: 
+
+```{r head, echo = F}
+head(mtcars)
+```
+
+Example Plot in Shiny Application
+========================================================
+
+```{r, echo = F, message = F, warning = F}
+data(mtcars)
+library(ggplot2)
+ gg <- ggplot(data = mtcars, aes(x = wt, y = mpg, color = as.factor(cyl))) +
+                        geom_point(size = 3) + geom_smooth(method = 'lm', se = F) + 
+                        labs(title = 'Scatter Plot of mtcars Variables', x = 'Vehicle Weight (1000 lbs)', 
+                             y = 'Miles Per Gallon (US)')  + 
+                        scale_color_discrete(name = '# of Cylinders')
+                gg
+```
+
+***
+
+- The graph at the right is a sample plot from the Shiny Application in the case when the user selects 'wt' for the x-axis, 'mpg' for the y-axis, and 'cyl' for the color.
+- The three seperate lines show te different linear models applied to the cars with 4 (red line), 6 (green line), and 8 (blue line) cylinders.  
+- The user can see the relationship between 'wt' and 'mpg' (the lower the weight, the higher the miles per gallon) while also seeing the difference between the car with a varying number of cylinders. 
+
+Questions?
+===
